@@ -94,4 +94,81 @@ On each round of the simulation, the simulator asks each critter object what act
 | Action.LEFT	| Turn left (rotate 90 degrees counter-clockwise) |
 | Action.RIGHT	| Turn right (rotate 90 degrees clockwise) |
 | Action.INFECT	| Infect the critter in front of you |
+
+The getMove method is passed an object of type CritterInfo. This is an object that provides you information about the current status of the critter. It includes eight methods for asking about surrounding neighbors, plus a method to find out the current direction the critter is facing. Below are the methods of the CritterInfo class. (You will not necessarily use all of these methods in your critters.)
+
+| CritterInfo method	| Description |
+|--------------------|---------------------------------------------------|
+| public Direction getDirection()	| returns the direction you are facing |
+| public Neighbor getFront()	     | returns the neighbor in front of you |
+| public Neighbor getBack()	      | returns the neighbor in back of you |
+| public Neighbor getLeft()	      | returns the neighbor to your left |
+| public Neighbor getRight()	     | returns the neighbor to your right |
+| public boolean frontThreat()	   | returns whether or not there is an enemy facing you in front of you |
+| public boolean backThreat()	    | returns whether or not there is an enemy facing you in back of you |
+| public boolean leftThreat()	    | returns whether or not there is an enemy facing you to your left |
+| public boolean rightThreat()	   | returns whether or not there is an enemy facing you to your right |
+
+The getDirection method returns what direction you are facing as one of four Direction constants. The next group of four CritterInfo methods (the "get" methods) return one of four Neighbor constants to represent the different kind of neighbors you might encounter. Below are the values of these constants:
+
+| Direction constant	| Description |
+|--------------------|-------------|
+| Direction.NORTH	| Facing north (up) |
+| Direction.SOUTH	| Facing south (down) |
+| Direction.EAST	| Facing east (right) |
+| Direction.WEST | Facing west (left) |
+
+| Neighbor constant	| Description |
+|-------------------|-------------|
+| Neighbor.WALL	| The neighbor in that direction is a wall (the edge of the world) |
+| Neighbor.EMPTY	| The neighbor in that direction an empty space |
+| Neighbor.SAME	| The neighbor in that direction is a critter of your species |
+| Neighbor.OTHER	| The neighbor in that direction is a critter of another species (an "enemy") | 
+
+Notice that you are only told whether critters are of your species or some other species; you cannot find out exactly what species they are. The final group of four methods (the "threat" methods) tell you whether there is an enemy in each direction that is facing you (which means they could potentially infect you). An enemy is a critter of a different species.
+
+## Required Critters
+You will implement the following four critters for this assessment. Each critter will have one constructor, which must accept exactly the parameters shown below. (Any changes to the constructor will cause the client to not compile.) For any behavior described as random, all possibilities should be equally likely, and random values should be generated using a Randomobject.
+
+## Bear
+| Item | Description |
+|------------|--------------------------|
+|constructor	|public Bear(boolean polar)|
+|getColor	|Color.WHITE for a polar bear (when polar is true), Color.BLACK otherwise (when polar is false)|
+|toString	|Alternate on each move between a forward slash ("/") and a backslash ("\") starting with a forward slash ("/")|
+|getMove	|Infect if an enemy is in front; otherwise hop if empty in front; otherwise turn left|
+
+The Bear constructor accepts a parameter indicating whether or not the bear is a polar (white) bear. When the parameter is true, the resulting bear will be white. When the parameter is false, the resulting bear will be black. The simulator deals with deciding whether each bear will be white or black; your class just needs to ensure that you create the right color bear based on the parameter.
+
+
+## Lion
 ```
+constructor	public Lion()
+getColor	Randomly pick one of Color.RED, Color.GREEN, or Color.BLUE and use that color for three moves, then randomly pick one of those colors again for the next three moves, then randomly pick one of those colors for the next three moves, and so on
+toString	"L"
+getMove	Infect if an enemy is in front; otherwise if a wall is in front or to the right, turn left; otherwise if a fellow Lion is in front, turn right; otherwise hop
+```
+
+## Giant
+```
+constructor	public Giant()
+getColor	Color.GRAY
+toString	"fee" for 6 moves, then "fie" for 6 moves, then "foe" for 6 moves, then "fum" for 6 moves, then repeat
+getMove	Infect if an enemy is in front; otherwise hop if empty in front; otherwise turn right
+```
+
+## Husky
+```
+constructor	public Husky()
+getColor	your choice
+toString	your choice
+getMove	your choice
+```
+
+Your Husky may have any behavior you like, as long as it does not exactly duplicate any example critter you have been shown in class (lecture, section, or lab) or any of the three required critters (Bear, Lion, Giant). In addition you may use advanced material if you choose, as long as it does not break or attempt to "hack" the simulation. Your Husky will only contribute to the Behavior dimension grade. It will not factor in to grading on the other dimensions.
+
+Unlike on most assignments, your Husky can use advanced material you happen to know in Java (with some restrictions). If you wish to use particularly complex material in your Husky, contact your TA or instructor to make sure it will be compatible with our system.
+
+On the last day of class, we will hold a competition pitting students' Husky critters against each other. More details about the tournament and how to participate will be released later. The tournament will be for fun, and participation will be entirely optional—your grade will not be affected by your participation or performance in the tournament.
+
+## Development Strategy and Hints
