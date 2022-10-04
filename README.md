@@ -130,45 +130,80 @@ Notice that you are only told whether critters are of your species or some other
 ## Required Critters
 You will implement the following four critters for this assessment. Each critter will have one constructor, which must accept exactly the parameters shown below. (Any changes to the constructor will cause the client to not compile.) For any behavior described as random, all possibilities should be equally likely, and random values should be generated using a Randomobject.
 
-## Bear
+### Bear
 | Item | Description |
 |------------|--------------------------|
-|constructor	|public Bear(boolean polar)|
-|getColor	|Color.WHITE for a polar bear (when polar is true), Color.BLACK otherwise (when polar is false)|
-|toString	|Alternate on each move between a forward slash ("/") and a backslash ("\") starting with a forward slash ("/")|
-|getMove	|Infect if an enemy is in front; otherwise hop if empty in front; otherwise turn left|
+| constructor	| public Bear(boolean polar)|
+| getColor	| Color.WHITE for a polar bear (when polar is true), Color.BLACK otherwise (when polar is false)|
+| toString	| Alternate on each move between a forward slash ("/") and a backslash ("\") starting with a forward slash ("/")|
+| getMove	| Infect if an enemy is in front; otherwise hop if empty in front; otherwise turn left|
 
 The Bear constructor accepts a parameter indicating whether or not the bear is a polar (white) bear. When the parameter is true, the resulting bear will be white. When the parameter is false, the resulting bear will be black. The simulator deals with deciding whether each bear will be white or black; your class just needs to ensure that you create the right color bear based on the parameter.
 
+### Lion
+| Item | Description |
+|-------------|------------|
+| constructor	| public Lion() |
+| getColor	| Randomly pick one of Color.RED, Color.GREEN, or Color.BLUE and use that color for three moves, then randomly pick one of those colors again for the next three moves, then randomly pick one of those colors for the next three moves, and so on |
+| toString	| "L" |
+| getMove	| Infect if an enemy is in front; otherwise if a wall is in front or to the right, turn left; otherwise if a fellow Lion is in front, turn right; otherwise hop |
 
-## Lion
-```
-constructor	public Lion()
-getColor	Randomly pick one of Color.RED, Color.GREEN, or Color.BLUE and use that color for three moves, then randomly pick one of those colors again for the next three moves, then randomly pick one of those colors for the next three moves, and so on
-toString	"L"
-getMove	Infect if an enemy is in front; otherwise if a wall is in front or to the right, turn left; otherwise if a fellow Lion is in front, turn right; otherwise hop
-```
 
-## Giant
-```
-constructor	public Giant()
-getColor	Color.GRAY
-toString	"fee" for 6 moves, then "fie" for 6 moves, then "foe" for 6 moves, then "fum" for 6 moves, then repeat
-getMove	Infect if an enemy is in front; otherwise hop if empty in front; otherwise turn right
-```
+### Giant
+| Item | Description |
+|-------------|------------|
+| constructor	| public Giant() |
+| getColor	| Color.GRAY |
+| toString	| "fee" for 6 moves, then "fie" for 6 moves, then "foe" for 6 moves, then "fum" for 6 moves, then repeat |
+| getMove	| Infect if an enemy is in front; otherwise hop if empty in front; otherwise turn right |
 
-## Husky
-```
-constructor	public Husky()
-getColor	your choice
-toString	your choice
-getMove	your choice
-```
 
-Your Husky may have any behavior you like, as long as it does not exactly duplicate any example critter you have been shown in class (lecture, section, or lab) or any of the three required critters (Bear, Lion, Giant). In addition you may use advanced material if you choose, as long as it does not break or attempt to "hack" the simulation. Your Husky will only contribute to the Behavior dimension grade. It will not factor in to grading on the other dimensions.
+### Eagle
+| Item | Description |
+|-------------|------------|
+| constructor	| public Eagle() |
+| getColor	| your choice |
+| toString	| your choice |
+| getMove	| your choice |
 
-Unlike on most assignments, your Husky can use advanced material you happen to know in Java (with some restrictions). If you wish to use particularly complex material in your Husky, contact your TA or instructor to make sure it will be compatible with our system.
+Your Eagle may have any behavior you like, as long as it does not exactly duplicate any example critter you have been shown in class (lecture, section, or lab) or any of the three required critters (Bear, Lion, Giant). In addition you may use advanced material if you choose, as long as it does not break or attempt to "hack" the simulation. Your Eagle will only contribute to the Behavior dimension grade. It will not factor in to grading on the other dimensions.
 
-On the last day of class, we will hold a competition pitting students' Husky critters against each other. More details about the tournament and how to participate will be released later. The tournament will be for fun, and participation will be entirely optional—your grade will not be affected by your participation or performance in the tournament.
+Unlike on most assignments, your Eagle can use advanced material you happen to know in Java (with some restrictions). If you wish to use particularly complex material in your Eagle, contact your TA or instructor to make sure it will be compatible with our system.
+
+On the last day of class, we will hold a competition pitting students' Eagle critters against each other. More details about the tournament and how to participate will be released later. The tournament will be for fun, and participation will be entirely optional—your grade will not be affected by your participation or performance in the tournament.
 
 ## Development Strategy and Hints
+We recommend attempting the classes in the order they are presented above (Bear, then Lion, then Giant). Within each class, you can test each part of the behavior without having implemented them all. (Any methods that are not implemented will use the default critter behavior.) You will likely be able to debug your work more easily if you test each method individually.
+
+As you work on your code, be sure to think carefully about the state (i.e. the fields) necessary for each class. It will be difficult or impossible to achieve the correct behavior if you are not storing the correct state in your objects. In particular, you will likely need to "remember" values passed to constructors in fields to ensure they are available for later use.
+Remember that you will not be able to control when or how often the methods of your class are called— that is controlled by the simulator. You will need to ensure that your critters behave properly no matter when, how often, or in what order the simulator class your methods. For example, you should not assume that getColor() is always called before toString(), or that those two methods will only be called once between calls to getMove(). You will also only be able to return one value each time the method is called. You will need to use fields (see above) to keep track of each object's current state and remember what your next choice should be.
+
+Be sure that your code is tied to actual moves made by a critter (i.e., that changes to state occur in the getMove() method). For example, the bear is supposed to be displayed alternately as a slash or backslash. This should happen as the getMove() method is called. The alternation should happen for each move, not for each call on toString().
+
+## Debugging Tips
+The simulator provides great visual feedback about where critters are, so you can watch them move around the world. But it doesn't give very helpful feedback about what direction critters are facing. The simulator has a "debug" button that makes this easier to see. When you activate debug mode, your critters will be displayed as arrow characters that indicate the direction they are facing. The simulator also indicates the step number as the simulation proceeds (initially showing a 0).
+
+The following descriptions and suggestions may help you test and debug your individual critters:
+
+### Bear
+Try running the simulator with just 30 bears in the world. You should see about half white and about half black bears. Initially they should all be displayed as slash characters. When you click "step," they should all switch to backslash characters. When you click "step" again they should go back to slash characters. And so on. When you click "start," you should observe the bears heading towards walls and then hugging the walls in a counter-clockwise direction. They will sometimes bump into each other and go off in other directions, but their tendency should be to follow along the walls
+
+### Lion
+Try running the simulator with just 30 lions in the world. You should see about one-third red, one-third green, and one-third blue lions. Use the "step" button to make sure that the colors change properly. The lions should keep their initial colors for three moves, while the simulator is indicating that it is step 0, step 1, and step 2. They should then switch colors when the simulator indicates step 3 and should stay with these new colors for steps 4 and 5. Then you should see a new color scheme for steps 6, 7, and 8. And so on. When you click "start," you should see the lions bouncing off of walls. When they bump into a wall, they should turn around and head back in the direction they came. They will sometimes bump into each other as well. They shouldn't end up clustering together anywhere.
+
+### Giant
+Try running the simulator with just 30 giants in the world. They should all be displayed as "fee." This should be true for steps 0, 1, 2, 3, 4, and 5. When you get to step 6, they should all switch to displaying "fie" and should stay that way for steps 6, 7, 8, 9, 10, and 11. Then they should be "foe" for steps 12, 13, 14, 15, 16, and 17. And they should be "fum" for steps 18, 19, 20, 21, 22, and 23. Then they should go back to "fee" for 6 more steps, and so on. When you click "start," you should observe the same kind of wall-hugging behavior that bears have, but this time in a clockwise direction.
+
+## Code Quality Guidelines
+In addition to producing the desired behavior, your code should be well-written and meet all expectations described in the grading guidelines and the Code Quality Guide. For this assessment, pay particular attention to the following elements:
+
+## Object-oriented Design
+Your code must follow good object-oriented design principles as described and demonstrated in class, the textbook, and the Code Quality Guide. In particular, you should encapsulate the data inside your objects, and you should not declare unnecessary data fields to store information that isn't vital to the state of the object. You should also not create any unnecessary objects. When possible, create an object once and use it as a field or parameter rather than repeatedly recreating the object.
+
+## Code Aesthetics
+Your code should be properly indented, make good use of blank lines and other whitespace, and include no lines longer than 100 characters. Your class, methods, variables, parameters and constants should all have meaningful and descriptive names and follow the standard Java naming conventions. (e.g. ClassName, methodOrVariableName, CONSTANT_NAME) See the Code Quality Guide for more information.
+
+## Commenting
+Your code should include a header comment on each class, following the same format described in previous assessments. Your code should also include a comment at the beginning of each method that describes that method's behavior. Method comments should also explicitly name and describe all parameters to that method and describe the method's return value (if it has one). Comments should be written in your own words (i.e. not copied and pasted from this spec) and should not include implementation details (such as describing loops or expressions included in the code). See the Code Quality Guide for examples and more information.
+
+Since you are not writing a program, your comments will be slightly different than on previous assessments, but should follow the same guidelines. Your class comments will describe the general behavior of a type of object rather than the function of a specific program. Your method comments should describe the behavior of the method in the context of the larger class. The commenting section of the Code Quality Guide has some examples specific to object-oriented programming.
