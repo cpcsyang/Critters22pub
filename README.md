@@ -1,5 +1,5 @@
-# Critters21
-Critters 2021
+# Critters22
+Critters 2022
 
 ## Objectives
 This assignment will assess your mastery of the following objectives:
