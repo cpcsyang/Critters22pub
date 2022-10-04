@@ -15,9 +15,7 @@ public class CritterMain {
         frame.add(30, Lion.class);
         frame.add(30, Giant.class);
         
-        frame.add(30, Husky.class);
-        frame.add(30, Husky1.class);
-        // frame.add(30, Husky2.class);
+        frame.add(30, Eagle.class);
 
         // frame.add(30, FlyTrap.class);
         // frame.add(60, Food.class);
