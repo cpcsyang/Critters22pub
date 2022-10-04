@@ -3,17 +3,6 @@ Critters 2021
 
 ## Objectives
 This assignment will assess your mastery of the following objectives:
-Write a class to define objects with specified behavior.
-Use fields to store state necessary for a class's operation.
-Practice good object-oriented design, including abstraction and encapsulation.
-Utilize inheritance and choose an appropriate base class for each new class.
-Follow prescribed conventions for spacing, indentation, naming, and comments.
-
-See the rest of the project description:
-https://courses.cs.washington.edu/courses/cse142/21au/assessments.html#assessment8critters
-
-## Objectives
-This assignment will assess your mastery of the following objectives:
 
 Write a class to define objects with specified behavior.
 Use fields to store state necessary for a class's operation.
@@ -207,3 +196,8 @@ Your code should be properly indented, make good use of blank lines and other wh
 Your code should include a header comment on each class, following the same format described in previous assessments. Your code should also include a comment at the beginning of each method that describes that method's behavior. Method comments should also explicitly name and describe all parameters to that method and describe the method's return value (if it has one). Comments should be written in your own words (i.e. not copied and pasted from this spec) and should not include implementation details (such as describing loops or expressions included in the code). See the Code Quality Guide for examples and more information.
 
 Since you are not writing a program, your comments will be slightly different than on previous assessments, but should follow the same guidelines. Your class comments will describe the general behavior of a type of object rather than the function of a specific program. Your method comments should describe the behavior of the method in the context of the larger class. The commenting section of the Code Quality Guide has some examples specific to object-oriented programming.
+
+## Reference
+This assignment originated from UW CSE class.
+See the link below for its origin:
+https://courses.cs.washington.edu/courses/cse142/21au/assessments.html#assessment8critters
