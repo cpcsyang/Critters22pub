@@ -128,7 +128,7 @@ The getDirection method returns what direction you are facing as one of four Dir
 Notice that you are only told whether critters are of your species or some other species; you cannot find out exactly what species they are. The final group of four methods (the "threat" methods) tell you whether there is an enemy in each direction that is facing you (which means they could potentially infect you). An enemy is a critter of a different species.
 
 ## Required Critters
-You will implement the following four critters for this assessment. Each critter will have one constructor, which must accept exactly the parameters shown below. (Any changes to the constructor will cause the client to not compile.) For any behavior described as random, all possibilities should be equally likely, and random values should be generated using a Randomobject.
+You will implement the following four critters for this assessment. Each critter will have one constructor, which must accept exactly the parameters shown below. (Any changes to the constructor will cause the client to not compile.) For any behavior described as random, all possibilities should be equally likely, and random values should be generated using a Randomobject. There are optional critters that are included in this repository that you may include: FlyTrap and Food. 
 
 ### Bear
 | Item | Description |
