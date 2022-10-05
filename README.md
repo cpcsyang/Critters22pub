@@ -1,4 +1,4 @@
-# Critters22
+# Critters22 :smile: :eagle: 
 Critters 2022
 
 ## Objectives
@@ -137,7 +137,6 @@ The Bear constructor accepts a parameter indicating whether or not the bear is a
 | toString	| "L" |
 | getMove	| Infect if an enemy is in front; otherwise if a wall is in front or to the right, turn left; otherwise if a fellow Lion is in front, turn right; otherwise hop |
 
-
 ### Giant
 | Item | Description |
 |-------------|------------|
@@ -145,7 +144,6 @@ The Bear constructor accepts a parameter indicating whether or not the bear is a
 | getColor	| Color.GRAY |
 | toString	| "fee" for 6 moves, then "fie" for 6 moves, then "foe" for 6 moves, then "fum" for 6 moves, then repeat |
 | getMove	| Infect if an enemy is in front; otherwise hop if empty in front; otherwise turn right |
-
 
 ### Eagle
 | Item | Description |
